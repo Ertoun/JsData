@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+        <style>
+            li a {
+                color: purple;
+            }
+        </style>
+    </head>
+    <body>
+        <ul id="userSkills" class="skillsList"></ul>
+
+    <script src="js/script-0.js"></script>        
+    </body>
+
+    <script>
+
+        // Attendre le DOM
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // Déclaration
+            var name = 'Airtan'; // ES 5
+            let surName = 'Ertan'; // ES 6 +
+
+            const birthDate = 1995; // Integer || number
+
+            let skills = [ 'HTML', 'CSS', 'Javascript']; // Array<string>
+            let user = {
+                name: 'Airtan',
+                age: 54,
+            }; // Object
+        
+        
+        // Sélectionner une balise du DOM
+            
+            let myId = document.getElementById('userSkills');               //
+            let myClass = document.getElementsByClassName('skillsList');    // OLD SCHOOL
+            let myUl = document.getElementsByTagName('ul');                 //
+
+            let skillsTag = document.querySelector('#userSkills');
+            let allUlTag = document.querySelectorAll('ul');                 // Array<DOMobject>
+
+
+        // Les boucles
+        
+            // For classique
+            for (let i = 0; i < skills.length; i++) {
+                console.log(`Iteration number : ${i}`)
+                console.log(typeof(`${skills}`))
+                console.log(`Boucle for 1 : ${skills[i]}`)
+            };
+
+            // For ... of
+            for (let item of skills) {
+                console.log(`Boucle for ... of : ${item}`)
+            };
+
+            // Map
+            skills.map(item => {
+                console.log(`Boucle map : ${item}`)
+                
+                // Ajouter les skills dans le DOM
+
+                // let newLi = document.createElement('li');
+                // newLi.innerHTML = `<b>${item}</b>`;
+                // skillsTag.append(newLi);
+
+                skillsTag.innerHTML += `
+                    <li class="skill-${item}">
+                        <a href="#" data-value="${item}">
+                            ${item}
+                        </a>    
+                    </li>
+                `;
+            });
+
+
+        // Manipulation du DOM 
+
+            let myLinks = document.querySelectorAll('li a');
+                // console.log({myLinks});
+            for (let item of myLinks) {
+                item.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    console.log("click");
+                    console.log("data-value");
+                    
+                    let itemValue = item.getAttribute('data-value');
+                
+                    // Switch
+
+                    switch(itemValue) {
+                        case 'HTML':
+                            console.log(`+1 pour ${itemValue}`)
+                        break;
+
+                        case 'CSS':
+                            console.log(`+2 pour ${itemValue}`)
+                        break;
+
+                        default:
+                            console.log(`+3 pour ${itemValue}`)
+                        break;
+                    }
+                
+                })
+            }
+
+            
+        })
+
+    </script>
+</html>
